@@ -1,0 +1,6 @@
+<nav data-tag="menuList">
+  <div id="marker" #marker></div>
+  <a routerLink="/all" (click)="switchChannel($event); indicator($event)" class='selected'>Все</a>
+  <a routerLink="/blocked" (click)="switchChannel($event); indicator($event)">Заблокированные</a>
+  <a routerLink="/active" (click)="switchChannel($event); indicator($event)">Активные</a>
+</nav>
