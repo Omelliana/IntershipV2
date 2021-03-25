@@ -13,6 +13,7 @@ html, body {
 
 body {
   min-height: 100vh;
+  min-width: 100vw;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -29,14 +30,14 @@ main{
 .user_table{
   border-collapse: separate;
   border-spacing: 0 18px;
+  table-layout: auto;
+  width: 100%;
 }
 
 .cards-container{
   padding-top: 77px;
   padding-left: 48px;
   padding-right: 48px;
-  width: 92vw;
-  table-layout: auto;
 }
 
 .row-padded {
@@ -44,9 +45,16 @@ main{
   height: 80px;
 }
 
+.row-padded td{
+  min-width: 0;
+  white-space: nowrap;
+  padding: 0;
+}
+
 .row-padded :first-child {
   border-bottom-left-radius: 4px;
   border-top-left-radius: 4px;
+  width: 48px !important;
 }
 
 .row-padded  :last-child {
@@ -59,6 +67,12 @@ main{
   padding-bottom: 30px;
 }
 
+.img-card{
+  margin: 16px;
+  height: 48px;
+  border-radius: 64px !important;
+}
+
 .user-info{
   font-style: normal;
   font-weight: normal;
@@ -68,28 +82,30 @@ main{
 }
 
 .last-update{
-  padding-left: 400px;
   color: #A8A8A8;
-}
-.balance-padding{
-  padding-left: 10px;
+  text-align: right;
+  min-width: 439px !important;
+  padding-right: 38px !important;
 }
 
-.rectangle {
+.status-list{
+  text-align: center;
+  min-width: 176px !important;
+  padding-right: 30px !important;
+}
+
+.status-list select{
+  min-width: 176px !important;
+  align-self: center;
+}
+
+.rectangle-shadow {
   position: fixed;
   bottom: 0;
   width: 100%;
   height: 44px;
   background: linear-gradient(180deg, rgba(247, 247, 247, 0) 0%, #F7F7F7 100%);
 }
-
-.img-card{
-  margin: 16px;
-  width: 48px;
-  height: 48px;
-  border-radius: 64px !important;
-}
-
 /*
                       <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
                       <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->

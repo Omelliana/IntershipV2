@@ -21,4 +21,9 @@ import { RouterModule } from '@angular/router';
     UserComponent
   ]
 })
-export class UsersModule { }
+export class UsersModule {
+
+  public getMoment(): any{
+    return 'aaa';
+  }
+}

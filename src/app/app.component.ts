@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { slider } from './route-animations';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,11 @@ import { slider } from './route-animations';
 })
 
 export class AppComponent {
-  title = 'Intv2';
+  title = 'Список пользователей';
+
+  constructor() {
+    moment.relativeTimeThreshold('ss', 0);
+  }
 
   prepareRoute(outlet: RouterOutlet): void
   {
