@@ -1,21 +1,25 @@
-<div class="cards-container">
+<div class="cards-container" (click)="checkOutside($event)">
   <table id="users" class="user_table">
     <tr *ngFor="let user of users" class="row-padded">
-      <td> <img [src]="getImage(user)" alt="user-avatar" class="img-card"/> </td>
-      <td class="user-info"><span>{{getFIO(user)}}</span></td>
+      <td> <img (error)="alertError($event)" [src]="user.avatar" alt="user-avatar" class="img-card"/> </td>
+      <td class="user-info">
+        <span>{{getFIO(user)}}</span>
+      </td>
       <td class="user-info balance-padding">
         {{ getBalance(user.balance | number:'1.2-2') }}
       </td>
       <td class="user-info last-update">
         Последние изменение: {{ getTime(user)}}
       </td>
-      <td class="status-list">
-        <select>
-          <option>{{ getStatusOfUser(user) }}</option>
-          <option *ngFor="let status of statuses">
-            {{status}}
-          </option>
-        </select>
+      <td class="dropdown">
+        <div class="dropdown-select" (click)="switchChannel($event)">
+          <span class="select">{{ getStatusOfUser(user) }}</span>
+          <img src="assets/img/caret-down.svg" alt="arrow-img"/>
+        </div>
+        <ul class="dropdown-list">
+          <li *ngFor="let status of statuses; let i = index" class="dropdown-list-item"
+              [ngStyle]="{'color' : i === user.status ? '#1A051D' : '#D0C9D6'}">{{ status }}</li>
+        </ul>
       </td>
     </tr>
   </table>

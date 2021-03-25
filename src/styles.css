@@ -27,6 +27,10 @@ main{
   position: relative;
 }
 
+.selected {
+  color: #1A051D !important;
+}
+
 .user_table{
   border-collapse: separate;
   border-spacing: 0 18px;
@@ -85,27 +89,58 @@ main{
   color: #A8A8A8;
   text-align: right;
   min-width: 439px !important;
-  padding-right: 38px !important;
+  padding-right: 1.5rem !important;
 }
 
-.status-list{
-  text-align: center;
-  min-width: 176px !important;
-  padding-right: 30px !important;
+.dropdown{
+  width: 15rem;
+  position: relative;
 }
 
-.status-list select{
-  min-width: 176px !important;
-  align-self: center;
+.dropdown-select{
+  min-width: 90%;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.dropdown-select img{
+  max-height: 10px;
+  color: #3F3356;
+}
+
+.dropdown-list{
+  min-width: 85%;
+  top: 110%;
+  display: none;
+  position: absolute;
+  z-index: 999;
+  border-radius: 6px;
+  background-color: #FFFFFF;
+  box-shadow: 0 7px 64px rgba(0, 0, 0, 0.07);
+}
+
+.dropdown-list-item{
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+  position: relative;
+}
+
+.shown{
+  display: block !important;
 }
 
 .rectangle-shadow {
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
   height: 44px;
   background: linear-gradient(180deg, rgba(247, 247, 247, 0) 0%, #F7F7F7 100%);
 }
+
 /*
                       <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
                       <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->

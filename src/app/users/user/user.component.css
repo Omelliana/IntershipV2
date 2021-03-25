@@ -7,7 +7,7 @@ body{
 nav{
   position: absolute;
   margin: 0;
-  width: 100%;
+  width: 100vw;
   height: 47px;
   background: #FFFF;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.07);
@@ -24,10 +24,6 @@ nav a{
   z-index: 1;
   display: inline-block;
   text-align: center;
-}
-
-.selected {
-  color: #1A051D !important;
 }
 
 nav #marker{
