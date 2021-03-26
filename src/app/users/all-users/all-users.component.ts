@@ -73,7 +73,7 @@ export class AllUsersComponent implements OnInit {
   }
 
   // отобразить плашку со списком статусов
-  // нужно было делать через select T_T
+  // НАДО БЫЛО ДЕЛАТЬ ЧЕРЕЗ СЕЛЕКТ А НЕ СПИСОК (╯°□°）╯︵ ┻━┻  памагите ಥ‿ಥ
   switchChannel(event: MouseEvent): void{
     this.check = true;
     let el = event.target as HTMLElement;
@@ -105,6 +105,7 @@ export class AllUsersComponent implements OnInit {
     }
   }
 
+  // открыть модалку
   openModal(id: string, user: User): void{
     if (!this.check) {
       this.modalService.open(id);
@@ -112,6 +113,7 @@ export class AllUsersComponent implements OnInit {
     }
   }
 
+  // закрыть модалку
   closeModal(id: string): void{
     this.modalService.close(id);
   }
