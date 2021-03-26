@@ -1,12 +1,25 @@
-<div class="modal">
-  <div class="modal-body">
-    <div class="modal-header">
-      <ng-content select="[modal-header]"></ng-content>
-    </div>
-    <div class="modal-bottom">
-      <ng-content select="[modal-body]">
-      </ng-content>
+<div id="modal-container" *ngIf="user">
+  <div class="modal">
+    <div class="modal-body">
+      <div class="modal-header">
+        <h1>{{user.fname}} {{user.name}}</h1>
+        <img class="close" src="assets/img/path.svg" (click)="closeModal();" alt="close"/>
+      </div>
+      <div class="modal-bottom">
+        <div class="modal-fields">
+          <span class="modal-span" [textContent]="user.fname"></span>
+          <span class="modal-span" [textContent]="user.name"></span>
+          <span class="modal-span" [textContent]="user.mname"></span>
+          <div class="modal-span modal-select">
+            <span class="select" [textContent]="user.getStatus()"></span>
+            <img src="assets/img/caret-down.svg" alt="arrow-img"/>
+          </div>
+        </div>
+        <div class="modal-tools">
+          <button class="modal-button">Сохранить</button>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="modal-background"></div>
 </div>
-<div class="modal-background"></div>

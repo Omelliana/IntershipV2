@@ -1,6 +1,6 @@
-<div class="cards-container" (click)="checkOutside($event)">
+<div class="cards-container">
   <div class="table">
-    <div class="table-row" *ngFor="let user of users" (click)="openModal('modal', user)">
+    <div class="table-row" *ngFor="let user of users" (click)="openModal(user)">
       <div class="table-cell">
         <img (error)="alertError($event)" [src]="user.avatar" alt="user-avatar" class="img-card"/>
         <div class="user-info">{{ getFIO(user)}}</div>
@@ -12,13 +12,14 @@
         Последние изменение: {{ getTime(user)}}
       </div>
       <div class="table-cell">
+        {{ user.getStatus() }}
 <!--        <div class="dropdown-select" (click)="switchChannel($event)">-->
-<!--          <span class="select" [textContent]="statuses[user.status]"></span>-->
+<!--          <span class="select" [textContent]="statuses[navigation-bar.status]"></span>-->
 <!--          <img src="assets/img/caret-down.svg" alt="arrow-img"/>-->
 <!--        </div>-->
 <!--        <ul class="dropdown-list">-->
 <!--          <li *ngFor="let status of statuses; let i = index" class="dropdown-list-item"-->
-<!--              [ngStyle]="{'color' : i === user.status ? '#1A051D' : '#D0C9D6'}">{{ status }}</li>-->
+<!--              [ngStyle]="{'color' : i === navigation-bar.status ? '#1A051D' : '#D0C9D6'}">{{ status }}</li>-->
 <!--        </ul>-->
       </div>
     </div>
@@ -27,21 +28,4 @@
 
 <div class="bottom-shadow"></div>
 
-<app-modal id="modal">
-  <div modal-header>
-    <h1>{{users[userId].fname}} {{users[userId].name}}</h1>
-    <img class="close" src="assets/img/path.svg" (click)="closeModal('modal');" alt="close"/>
-  </div>
-  <div modal-body class="modal-bottom-body">
-      <div class="modal-fields">
-        <span class="modal-span" [textContent]="users[userId].fname"></span>
-        <span class="modal-span" [textContent]="users[userId].name"></span>
-        <span class="modal-span" [textContent]="users[userId].mname"></span>
-        <div class="modal-span list-status-again">
-          <span class="select" [textContent]="statuses[users[userId].status]"></span>
-          <img src="assets/img/caret-down.svg" alt="arrow-img"/>
-        </div>
-      </div>
-      <div class="modal-tools"><button>Сохранить</button></div>
-  </div>
-</app-modal>
+<app-modal></app-modal>

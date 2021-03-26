@@ -1,9 +1,9 @@
-import {Component, OnInit, Renderer2} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../user';
 import * as moment from 'moment';
-import {ModalService} from '../modal/modal.service';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-all-users',
@@ -12,27 +12,33 @@ import {ModalService} from '../modal/modal.service';
 })
 
 export class AllUsersComponent implements OnInit {
-  users: User[] = [];
-  userId = 0;
-  check = false;
-  statuses = ['Приостановлена', 'Подписка активна', 'Заблокирован'];
-  url = 'https://watchlater.cloud.technokratos.com/get/array';
-  parentElement: HTMLElement[] = [];
+  @ViewChild(ModalComponent, {static: true}) modal!: ModalComponent;
 
-  constructor(private httpClient: HttpClient, private modalService: ModalService) {
+  users: User[] = [];
+  statuses = ['Приостановлена', 'Подписка активна', 'Заблокирован'];
+  getUsersUrl = 'https://watchlater.cloud.technokratos.com/get/array';
+  getImageUrl = 'https://randomuser.me/api/portraits/men/32.jpg';
+
+  constructor(private httpClient: HttpClient) {
   }
 
   ngOnInit(): void {
     // получить данные из JSON
     this.getUsers()
       .subscribe((response: User[]) => {
-        this.users = response;
+        this.users = response.map(x => Object.assign(
+          new User(x.id, x.name, x.fname, x.mname, x.status, x.lastUpdatedAt, x.avatar, x.balance), x));
       });
+  }
+
+  // проверка если изображение не действительно и загрузка заглушки
+  alertError(elem: any): void{
+    elem.target.src = this.getImageUrl;
   }
 
   // получить JSON
   getUsers(): Observable<User[]>  {
-    return this.httpClient.get<User[]>(this.url);
+    return this.httpClient.get<User[]>(this.getUsersUrl);
   }
 
   // отобразить ФИО
@@ -45,76 +51,16 @@ export class AllUsersComponent implements OnInit {
     return `Баланс: ${fields.replace(',', ' ')}`;
   }
 
-  // проверка если изображение не действительно и загрузка заглушки
-  alertError(elem: any): void{
-    elem.target.src = 'https://randomuser.me/api/portraits/men/32.jpg';
-  }
-
   // отобразить время
   getTime(user: User): string{
     const days = user.lastUpdatedAt;
-    if ( moment().diff(days, 'days') > 319)
-    { return moment(days).format('YYYY.MM.DD') ; }
-    else
-    { return moment(days).fromNow(); }
-  }
-
-  // установить родителя для списка и проверка надо ли скрывать предыдущий
-  setParent(element: HTMLElement, childFirst: HTMLElement, childSecond: HTMLElement): HTMLElement{
-    this.parentElement[0] = childFirst;
-    this.parentElement[1] = childSecond;
-    element = element.children.length > 1 ? element.children[1] as HTMLElement : element;
-    // проверка на уже другой открытый список
-    this.checkIfSame(element);
-    this.parentElement[2] = element;
-    for (let i = 0; i < element.children.length; i++)
-    { this.parentElement[3 + i] = element.children[i] as HTMLElement; }
-    return element;
-  }
-
-  // отобразить плашку со списком статусов
-  // НАДО БЫЛО ДЕЛАТЬ ЧЕРЕЗ СЕЛЕКТ А НЕ СПИСОК (╯°□°）╯︵ ┻━┻  памагите ಥ‿ಥ
-  switchChannel(event: MouseEvent): void{
-    this.check = true;
-    let el = event.target as HTMLElement;
-    if (el.parentElement && el.parentElement.parentElement)
-    {
-      el = (el.parentElement.className === 'dropdown-select') ?
-      this.setParent(el.parentElement.parentElement, el, el.parentElement) :
-      this.setParent(el.parentElement, el.children[0] as HTMLElement, el);
-      el.classList.add('shown');
-    }
-  }
-
-  // проверека двух открытых списков
-  checkIfSame(element: HTMLElement): void{
-    if (this.parentElement.length > 2)
-    {
-      if (element !== this.parentElement[2])
-      { this.parentElement[2].classList.remove('shown'); }
-    }
-  }
-
-  // проверка если пользователь нажал за приделами списка, т.е. не на саму плашку и на список
-  checkOutside(event: MouseEvent): void{
-    if (this.parentElement.length) {
-      if (!this.parentElement.includes(event.target as HTMLElement)) {
-        this.parentElement[2].classList.remove('shown');
-        this.check = false;
-      }
-    }
+    return moment().diff(days, 'days') > 319 ?
+      moment(days).format('YYYY.MM.DD') :
+      moment(days).fromNow();
   }
 
   // открыть модалку
-  openModal(id: string, user: User): void{
-    if (!this.check) {
-      this.modalService.open(id);
-      this.userId = user.id;
-    }
-  }
-
-  // закрыть модалку
-  closeModal(id: string): void{
-    this.modalService.close(id);
+  openModal(user: User): void{
+    this.modal.openModal(user);
   }
 }

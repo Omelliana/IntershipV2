@@ -1,50 +1,34 @@
-import { Component, ViewEncapsulation, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
-
-import { ModalService } from './modal.service';
+import { Component, ViewEncapsulation, ElementRef, OnInit } from '@angular/core';
+import { User } from '../user';
 
 @Component({
   selector: 'app-modal',
   templateUrl: 'modal.component.html',
-  styleUrls: ['modal.component.less'],
+  styleUrls: ['modal.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 
-export class ModalComponent implements OnInit, OnDestroy {
-  @Input() id !: string;
+export class ModalComponent implements OnInit {
+  user!: User;
   element: any;
+  statuses = ['Приостановлена', 'Подписка активна', 'Заблокирован'];
 
-  constructor(private modalService: ModalService, private el: ElementRef) {
+  constructor(private el: ElementRef) {
     this.element = el.nativeElement;
   }
 
   ngOnInit(): void {
-    if (!this.id) {
-      console.error('modal must have an id');
-      return;
-    }
-
     document.body.appendChild(this.element);
-    this.element.addEventListener('click', (el: { target: { className: string; }; }) => {
-      if (el.target.className === 'jw-modal') {
-        this.close();
-      }
-    });
-
-    this.modalService.add(this);
   }
 
-  ngOnDestroy(): void {
-    this.modalService.remove(this.id);
-    this.element.remove();
-  }
-
-  open(): void {
+  // открыть модалку
+  openModal(user: User): void {
+    this.user = user;
     this.element.style.display = 'block';
-    document.body.classList.add('jw-modal-open');
   }
 
-  close(): void {
+  // закрыть модалку
+  closeModal(): void {
     this.element.style.display = 'none';
-    document.body.classList.remove('jw-modal-open');
   }
 }

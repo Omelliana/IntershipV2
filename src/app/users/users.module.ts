@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserComponent } from './user/user.component';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import { BlockedUsersComponent } from './blocked-users/blocked-users.component';
 import { ActiveUsersComponent } from './active-users/active-users.component';
@@ -10,7 +10,7 @@ import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
-    UserComponent,
+    NavigationBarComponent,
     AllUsersComponent,
     BlockedUsersComponent,
     ActiveUsersComponent,
@@ -22,7 +22,7 @@ import {FormsModule} from '@angular/forms';
     FormsModule
   ],
   exports: [
-    UserComponent
+    NavigationBarComponent
   ]
 })
 

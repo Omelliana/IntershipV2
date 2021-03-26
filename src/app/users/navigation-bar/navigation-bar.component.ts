@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  templateUrl: './navigation-bar.component.html',
+  styleUrls: ['./navigation-bar.component.css']
 })
 
-export class UserComponent implements OnInit {
+export class NavigationBarComponent implements OnInit {
   marker: HTMLElement =  document.querySelector('#marker') as HTMLElement;
 
   constructor() {
