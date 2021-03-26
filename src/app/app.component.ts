@@ -17,6 +17,7 @@ export class AppComponent {
 
   constructor() {
     moment.relativeTimeThreshold('ss', 0);
+    moment.locale('ru');
   }
 
   prepareRoute(outlet: RouterOutlet): void

@@ -1,6 +1,6 @@
 <div class="cards-container" (click)="checkOutside($event)">
   <table id="users" class="user_table">
-    <tr *ngFor="let user of users" class="row-padded">
+    <tr *ngFor="let user of users" class="row-padded" (click)="openModal('modal', user)">
       <td> <img (error)="alertError($event)" [src]="user.avatar" alt="user-avatar" class="img-card"/> </td>
       <td class="user-info">
         <span>{{getFIO(user)}}</span>
@@ -13,7 +13,7 @@
       </td>
       <td class="dropdown">
         <div class="dropdown-select" (click)="switchChannel($event)">
-          <span class="select">{{ getStatusOfUser(user) }}</span>
+          <span class="select" [textContent]="statuses[user.status]"></span>
           <img src="assets/img/caret-down.svg" alt="arrow-img"/>
         </div>
         <ul class="dropdown-list">
@@ -24,5 +24,32 @@
     </tr>
   </table>
 </div>
+
+
+<app-modal id="modal">
+  <div modal-header>
+    <h1>{{users[userId].fname}} {{users[userId].name}}
+      <img class="close" src="assets/img/path.svg" (click)="closeModal('modal');" alt="close"/>
+    </h1>
+  </div>
+  <div modal-body>
+    <table>
+      <tr>
+        <td><input [readOnly]="true" [value]="users[userId].fname" class="div-td"/></td>
+        <td><input [readOnly]="true" [value]="users[userId].name" class="div-td"/></td>
+        <td><input [readOnly]="true" [value]="users[userId].mname" class="div-td"/></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="div-td list-status-again">
+            <span class="select" [textContent]="statuses[users[userId].status]"></span>
+            <img src="assets/img/caret-down.svg" alt="arrow-img"/>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <button>Сохранить</button>
+  </div>
+</app-modal>
 
 <div class="rectangle-shadow"></div>

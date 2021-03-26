@@ -8,7 +8,6 @@
 
 html, body {
   height: 100%;
-  background-color: #E5E5E5;
 }
 
 body {
@@ -17,6 +16,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background: #F7F7F7;
 }
 
 *{
@@ -104,6 +104,8 @@ main{
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  background: #FFFFFF;
+  border-radius: 6px;
 }
 
 .dropdown-select img{

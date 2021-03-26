@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../user';
 import * as moment from 'moment';
+import {ModalService} from '../modal/modal.service';
 
 @Component({
   selector: 'app-all-users',
@@ -12,12 +13,12 @@ import * as moment from 'moment';
 
 export class AllUsersComponent implements OnInit {
   users: User[] = [];
+  userId = 0;
   statuses = ['Приостановлена', 'Подписка активна', 'Заблокирован'];
   url = 'https://watchlater.cloud.technokratos.com/get/array';
   parentElement: HTMLElement[] = [];
-  // childListElement: HTMLElement = document.getElementsByClassName('null')[0] as HTMLElement;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private modalService: ModalService) {
   }
 
   ngOnInit(): void {
@@ -54,13 +55,7 @@ export class AllUsersComponent implements OnInit {
     if ( moment().diff(days, 'days') > 319)
     { return moment(days).format('YYYY.MM.DD') ; }
     else
-    { return moment(days).locale('ru').fromNow(); }
-  }
-
-  // вернуть строковый статус пользователя
-  getStatusOfUser(user: User): string
-  {
-    return this.statuses[user.status];
+    { return moment(days).fromNow(); }
   }
 
   // установить родителя для списка и проверка надо ли скрывать предыдущий
@@ -77,6 +72,7 @@ export class AllUsersComponent implements OnInit {
   }
 
   // отобразить плашку со списком статусов
+  // нужно было делать через select T_T
   switchChannel(event: MouseEvent): void{
     let el = event.target as HTMLElement;
     if (el.parentElement && el.parentElement.parentElement)
@@ -104,5 +100,14 @@ export class AllUsersComponent implements OnInit {
         this.parentElement[2].classList.remove('shown');
       }
     }
+  }
+
+  openModal(id: string, user: User): void{
+    this.modalService.open(id);
+    this.userId = user.id;
+  }
+
+  closeModal(id: string): void{
+    this.modalService.close(id);
   }
 }

@@ -1,0 +1,128 @@
+/* MODAL STYLES
+-------------------------------*/
+app-modal {
+  display: none;
+  .jw-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    z-index: 1000;
+    overflow: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .jw-modal-body {
+
+      height: 53%;
+      width: 54%;
+      background: #FFFFFF;
+      box-shadow: 0 7px 64px rgba(0, 0, 0, 0.07);
+      border-radius: 12px;
+
+      .jw-modal-header{
+        height: 11%;
+        margin-top: 3%;
+        padding-left: 3%;
+        padding-right: 3%;
+        color: #000000;
+        border-bottom: 1px solid #ECEBED;
+
+        h1{
+          font-style: normal;
+          font-weight: 600;
+          font-size: 1.5rem;
+        }
+
+        h1 img{
+          height: 1rem;
+          float: right;
+        }
+
+        h1 img:hover{
+          opacity: 0.8;
+          cursor: pointer;
+        }
+      }
+
+      .jw-modal-bottom{
+        width: 100%;
+        height: 86%;
+        padding: 1% 2% 2% 3%;
+
+        table{
+          border-collapse: separate;
+          border-spacing: 0 1rem;
+        }
+
+        td{
+          height: 2rem;
+        }
+
+        .div-td{
+          background: #FFFFFF;
+          height: 2rem;
+          width: 10rem;
+          padding: 1rem;
+
+          border: 1px solid #ECEBED;
+          box-sizing: border-box;
+
+          box-shadow: 0 7px 64px rgba(0, 0, 0, 0.07);
+          border-radius: 6px;
+
+          font-style: normal;
+          font-weight: normal;
+          font-size: .7rem;
+
+          display: flex;
+          align-items: center;
+          margin-right: 28px;
+        }
+
+        .div-td img{
+          max-height: 10px;
+          color: #3F3356;
+        }
+
+        .list-status-again{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        button{
+          float: right;
+          margin-top: 9rem;
+          height: 2rem;
+          width: 9rem;
+          border: none;
+          color: #FFFFFF;
+          background: #6979F8;
+          border-radius: 8px;
+          font-size: .7rem;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .jw-modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(63, 51, 86, 0.4);
+
+    z-index: 900;
+  }
+}
+
+body.jw-modal-open {
+  overflow: hidden;
+}
