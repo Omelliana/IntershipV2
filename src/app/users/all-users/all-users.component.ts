@@ -14,6 +14,7 @@ import {ModalService} from '../modal/modal.service';
 export class AllUsersComponent implements OnInit {
   users: User[] = [];
   userId = 0;
+  check = false;
   statuses = ['Приостановлена', 'Подписка активна', 'Заблокирован'];
   url = 'https://watchlater.cloud.technokratos.com/get/array';
   parentElement: HTMLElement[] = [];
@@ -74,6 +75,7 @@ export class AllUsersComponent implements OnInit {
   // отобразить плашку со списком статусов
   // нужно было делать через select T_T
   switchChannel(event: MouseEvent): void{
+    this.check = true;
     let el = event.target as HTMLElement;
     if (el.parentElement && el.parentElement.parentElement)
     {
@@ -98,13 +100,16 @@ export class AllUsersComponent implements OnInit {
     if (this.parentElement.length) {
       if (!this.parentElement.includes(event.target as HTMLElement)) {
         this.parentElement[2].classList.remove('shown');
+        this.check = false;
       }
     }
   }
 
   openModal(id: string, user: User): void{
-    this.modalService.open(id);
-    this.userId = user.id;
+    if (!this.check) {
+      this.modalService.open(id);
+      this.userId = user.id;
+    }
   }
 
   closeModal(id: string): void{
