@@ -1,8 +1,7 @@
-/* MODAL STYLES
--------------------------------*/
 app-modal {
   display: none;
-  .jw-modal {
+
+  .modal {
     position: fixed;
     top: 0;
     right: 0;
@@ -16,31 +15,36 @@ app-modal {
     align-items: center;
     justify-content: center;
 
-    .jw-modal-body {
+    .modal-body {
 
+      min-width: 916px;
+      min-height: 573px;
       height: 53%;
       width: 54%;
       background: #FFFFFF;
       box-shadow: 0 7px 64px rgba(0, 0, 0, 0.07);
       border-radius: 12px;
 
-      .jw-modal-header{
-        height: 11%;
-        margin-top: 3%;
-        padding-left: 3%;
-        padding-right: 3%;
-        color: #000000;
+      .modal-header div{
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 80px;
+        padding: 20px 34px;
         border-bottom: 1px solid #ECEBED;
 
         h1{
           font-style: normal;
-          font-weight: 600;
-          font-size: 1.5rem;
+          font-weight: bold;
+          font-size: 34px;
+          color: #000000;
         }
 
-        h1 img{
-          height: 1rem;
-          float: right;
+        img{
+          height: 21px;
         }
 
         h1 img:hover{
@@ -49,42 +53,56 @@ app-modal {
         }
       }
 
-      .jw-modal-bottom{
+      .modal-bottom{
         width: 100%;
-        height: 86%;
-        padding: 1% 2% 2% 3%;
+        height: calc(100% - 80px);
+        padding: 34px 22px 22px 34px;
 
-        table{
-          border-collapse: separate;
-          border-spacing: 0 1rem;
-        }
-
-        td{
-          height: 2rem;
-        }
-
-        .div-td{
-          background: #FFFFFF;
-          height: 2rem;
-          width: 10rem;
-          padding: 1rem;
-
-          border: 1px solid #ECEBED;
-          box-sizing: border-box;
-
-          box-shadow: 0 7px 64px rgba(0, 0, 0, 0.07);
-          border-radius: 6px;
-
-          font-style: normal;
-          font-weight: normal;
-          font-size: .7rem;
-
+        .modal-bottom-body{
+          position: relative;
           display: flex;
-          align-items: center;
-          margin-right: 28px;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: flex-start;
+          width: 100%;
+          height: 100%;
+
+          .modal-fields{
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            width: 100%;
+          }
+
+          .modal-tools{
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: flex-start;
+            width: 100%;
+            height: max-content;
+          }
         }
 
-        .div-td img{
+        .modal-span{
+          position: relative;
+          width: 240px;
+          height: 48px;
+          margin: 0 28px 28px 0;
+          font-size: 15px;
+          font-weight: normal;
+          border-radius: 6px;
+          box-shadow: 0 7px 64px rgba(0,0,0,0.07);
+          border: 1px solid #ECEBED;
+          background: #FFFFFF;
+          padding: 14px 16px;
+        }
+
+        .modal-span img{
           max-height: 10px;
           color: #3F3356;
         }
@@ -96,22 +114,20 @@ app-modal {
         }
 
         button{
-          float: right;
-          margin-top: 9rem;
-          height: 2rem;
-          width: 9rem;
-          border: none;
+          height:40px;
+          width: 180px;
+          border: 0;
           color: #FFFFFF;
           background: #6979F8;
-          border-radius: 8px;
-          font-size: .7rem;
+          border-radius: 6px;
+          font-size: 13px;
           text-align: center;
         }
       }
     }
   }
 
-  .jw-modal-background {
+  .modal-background {
     position: fixed;
     top: 0;
     right: 0;
@@ -123,6 +139,6 @@ app-modal {
   }
 }
 
-body.jw-modal-open {
+body.modal-open {
   overflow: hidden;
 }
