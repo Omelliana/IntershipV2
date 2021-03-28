@@ -1,9 +1,9 @@
-<div id="modal-container" *ngIf="user">
+<div id="modal-container">
   <div class="modal">
     <div class="modal-body">
       <div class="modal-header">
         <h1>{{user.fname}} {{user.name}}</h1>
-        <img class="close" src="assets/img/path.svg" (click)="closeModal();" alt="close"/>
+        <img class="close" src="../../../../../assets/img/path.svg" (click)="autoDestroy();" alt="close"/>
       </div>
       <div class="modal-bottom">
         <div class="modal-fields">

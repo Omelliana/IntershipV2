@@ -1,5 +1,5 @@
 export class User {
-  private statuses = ['Приостановлена', 'Подписка активна', 'Заблокирован'];
+  public statuses = ['Приостановлена', 'Подписка активна', 'Заблокирован'];
 
   constructor(public id: number, public name: string, public fname: string,
               public mname: string, public status: number, public lastUpdatedAt: Date,

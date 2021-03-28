@@ -1,0 +1,12 @@
+<nav data-tag="menuList" class="navigation-bar">
+  <div id="marker" #navigationSlider></div>
+  <a *ngFor="let element of navigationElements"
+      [class.select] = "selectedElement === element.name"
+      (click)="indicator($event)"
+      [routerLink]="element.link" routerLinkActive="select">
+      {{ element.name }}
+  </a>
+</nav>
+<main [@routeAnimations]="prepareRoute(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</main>
