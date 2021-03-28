@@ -1,0 +1,14 @@
+<div class="table-status-list">
+  <div class="dropdown-list" id="dropdown" (click)="dropdownIsHidden = !dropdownIsHidden" #dropdown>
+    <ul class="dropdown-selected">
+      <li class="dropdown-item">{{ user.getStatus() }}</li>
+      <img class="dropdown-arrow" src="assets/img/caret-down.svg"/>
+    </ul>
+  </div>
+  <ul class="dropdown-options" [hidden]="dropdownIsHidden" #dropdownList>
+    <li *ngFor="let status of user.statuses; index as i"
+        [textContent] = "status"
+        [class.active] = "user.status === i">
+    </li>
+  </ul>
+</div>
