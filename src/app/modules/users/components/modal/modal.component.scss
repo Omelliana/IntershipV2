@@ -95,15 +95,21 @@ app-modal {
           padding: 14px 16px;
         }
 
-        .modal-span img{
-          max-height: 10px;
-          color: #3F3356;
-        }
-
         .modal-select{
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
+          border-radius: 6px;
+          box-shadow: 0 7px 64px rgba(0,0,0,0.07);
+          border: 1px solid #ECEBED;
+          background: #FFFFFF;
+          width: 240px;
+          height: 48px;
+
+          .table-status-list{
+            width: 100%;
+
+            .dropdown-selected{
+              width: 208px;
+            }
+          }
         }
 
         .modal-button{

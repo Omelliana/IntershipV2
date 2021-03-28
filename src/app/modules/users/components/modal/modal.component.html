@@ -10,9 +10,10 @@
           <span class="modal-span" [textContent]="user.fname"></span>
           <span class="modal-span" [textContent]="user.name"></span>
           <span class="modal-span" [textContent]="user.mname"></span>
-          <div class="modal-span modal-select">
-            <span class="select" [textContent]="user.getStatus()"></span>
-            <img src="assets/img/caret-down.svg" alt="arrow-img"/>
+          <div class="modal-select">
+            <app-dropdown-list [user]="user"></app-dropdown-list>
+<!--            <span class="select" [textContent]="user.getStatus()"></span>-->
+<!--            <img src="assets/img/caret-down.svg" alt="arrow-img"/>-->
           </div>
         </div>
         <div class="modal-tools">
